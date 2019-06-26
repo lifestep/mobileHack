@@ -1477,3 +1477,21 @@ iscroll的闪动问题也与渲染有关系，可以参考
 	    var fields       = ["displayName", "name","phoneNumbers"];
 	    navigator.contacts.find(fields, onSuccess, onError,options);  
 	    }
+	    
+	    
+### 安卓滚动焦距元素到视窗
+```
+	if (/Android/gi.test(navigator.userAgent)) {
+		window.addEventListener('resize', function () {
+			setTimeout(function () {
+				if (document.querySelectorAll('input:focus')[0]) {
+					document.querySelectorAll('input:focus')[0].scrollIntoViewIfNeeded();
+					document.querySelectorAll('input:focus')[0].scrollIntoView();
+				} else if (document.activeElement) {
+					document.activeElement.scrollIntoViewIfNeeded();
+					document.activeElement.scrollIntoView();
+				}
+			}, 300);
+		})
+	}
+```
